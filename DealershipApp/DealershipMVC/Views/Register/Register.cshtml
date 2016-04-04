@@ -4,4 +4,29 @@
    ViewBag.Title = "title";
 }
 
-<h2>title</h2>
+@Html.TextBoxFor(m=>m.Manager,  new Dictionary<string, object>
+{
+   {"placeholder", "Manager Name" }
+})
+@Html.TextBoxFor(m=>m.Phone, new Dictionary<string, object>
+{
+   {"placeholder", "Manager Name" }
+})
+@Html.TextBoxFor(m => m.Address.StreetAddress, new Dictionary<string, object>
+{
+   {"placeholder", "Street Address" }
+})
+@Html.TextBoxFor(m => m.Address.City, new Dictionary<string, object>
+{
+   {"placeholder", "City" }
+})
+@Html.TextBoxFor(m => m.Address.State, new Dictionary<string, object>
+{
+   {"placeholder", "State" }
+})
+@Html.TextBoxFor(m => m.Address.ZipCode, new Dictionary<string, object>
+{
+   {"placeholder", "Postal Code" }
+})
+
+

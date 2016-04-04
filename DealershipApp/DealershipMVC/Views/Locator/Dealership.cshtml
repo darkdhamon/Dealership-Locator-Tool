@@ -1,10 +1,43 @@
 ﻿@model DealershipModel.Entities.Dealership
+<div class="col-sm-6">
 
-<h2>@Model.Address.City (Dealer #:@Model.Id.ToString("D5"))</h2>
-<h6>@Model.Address.FullAddress</h6>
-<p>Managed by: @Model.Manager </p>
-<div>
-   <a id="directions" href="http://maps.google.com/maps?saddr=(CurrentAddress)&daddr=(@Model.Address.FullAddress)" onclick="UpdateLocation()" target="_new">content</a>
+   <h2>@Model.Address.City (Dealer #:@Model.Id.ToString("D5"))</h2>
+   <h6>@Model.Address.FullAddress</h6>
+   <p>Managed by: @Model.Manager </p>
+   <p><abbr title="Phone">P:</abbr> @Model.Phone</p>
+</div>
+<div class="col-sm-6">
+
+   <table>
+      <thead>
+      <th>Day</th>
+      <th>Hours</th>
+      </thead>
+      <tr>
+         <td>M-F</td>
+         <td>
+            Sales: 8 AM - 10 PM<br />
+            Service: 8 AM - 6 PM
+         </td>
+      </tr>
+      <tr>
+         <td>Sat</td>
+         <td>
+            Sales: 8 AM - 6PM PM<br />
+            Service: 12 PM - 6 PM
+         </td>
+      </tr>
+      <tr>
+         <td>Sun</td>
+         <td>
+            Closed
+         </td>
+      </tr>
+   </table>
+</div>
+
+<div class="col-sm-12">
+   <a id="directions" href="http://maps.google.com/maps?saddr=(CurrentAddress)&daddr=(@Model.Address.FullAddress)" onclick="UpdateLocation()" class="btn btn-info" target="_new">Directions</a>
 </div>
 
 <input type="hidden" id="DealerLat" name="DealerLat" value="@Model.Address.Latitude" />

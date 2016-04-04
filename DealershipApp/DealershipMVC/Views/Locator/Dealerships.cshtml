@@ -1,7 +1,5 @@
 ﻿@model DealershipModel.Entities.Dealership[]
 
-@*@using (Ajax.BeginForm())
-{*@
 @foreach (var dealership in Model)
  {
     <li role="presentation">
@@ -16,9 +14,13 @@
              UpdateTargetId = "DealershipDetails",
              OnSuccess = "FocusMap"
           })
-       @*<a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
-      @Html.Hidden("dealerDist" + dealership.Id)*@
     </li>
 
  }
-@*  }*@
+
+@if (Model.Length == 0)
+{
+   <text>
+      No dealerships match your search requirements. Please expand your search criteria.
+   </text>
+}

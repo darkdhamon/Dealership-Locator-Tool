@@ -59,36 +59,8 @@ namespace DealershipMVC.Controllers
          return PartialView(model);
       }
 
-      //[HttpPost]
-      //public ActionResult FilterLocations(FilterViewModel model)
-      //{
-      //   if (!ModelState.IsValid||model==null) return PartialView("Dealerships", Client.Dealerships(null, null, null, null, null));
-      //   Address address = null;
-      //   string year = null;
-      //   if (model.ZipCode!=null&&Regex.Match(model.ZipCode, @"\d{5}").Success)
-      //   {
-      //      address = new Address()
-      //      {
-      //         ZipCode = model.ZipCode
-      //      };
-      //   }
-      //   if (model.Year != null && Regex.Match(model.Year, @"\d{4}").Success)
-      //   {
-      //      year = model.Year;
-      //   }
-
-
-      //   return PartialView("Dealerships", 
-      //      Client.Dealerships(
-      //         address,
-      //         model.Miles==0?(int?) null:model.Miles,
-      //         model.Make.IfNullOrWhiteSpace(null),
-      //         model.Model.IfNullOrWhiteSpace(null),
-      //         year
-      //         ));
-      //}
       [HttpPost]
-      public ActionResult FilterLocations(int miles, string zipCode, string year, string make, string model)
+      public ActionResult FilterLocations(int miles, string zipCode, string year, string make, string model, string city, string state, double lat, double lng, bool useLoc)
       {
          Address address = null;
          if (zipCode != null && Regex.Match(zipCode, @"\d{5}").Success)
@@ -98,6 +70,18 @@ namespace DealershipMVC.Controllers
                ZipCode = zipCode
             };
          }
+         if(city!=null&&state!=null)
+            address = new Address()
+            {
+               City = city,
+               State = state,
+            };
+         if(!(lat == 0 || lng == 0) && useLoc)
+            address = new Address()
+            {
+               Latitude = lat,
+               Longitude = lng
+            };
          if (!(year != null && Regex.Match(year, @"\d{4}").Success))
          {
             year = null;

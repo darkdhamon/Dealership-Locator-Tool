@@ -98,21 +98,26 @@ namespace DealershipWCF
 
       private static bool CheckRange(Address address, int rangeMiles, Address dealerAddress)
       {
+         var tryGeo = false;
          if (address == null) return true;
+         if (address.ZipCode==null&&address.City==null)
+         {
+            tryGeo = true;
+         }
          var distanceMiles = GoogleMaps.DistanceMatrix.Query(new DistanceMatrixRequest
          {
             Destinations = new[] {dealerAddress.FullAddress},
-            Origins = new[] {address.FullAddress}
+            Origins = new[] {tryGeo?$"{address.Latitude},{address.Longitude}":address.FullAddress}
          }).Rows.First().Elements.First().Distance.Value/1000.0*0.621371;
          return distanceMiles < rangeMiles;
       }
 
       private void GeocodeAddress(Address address)
       {
-         if (string.IsNullOrWhiteSpace(address.StreetAddress) ||
+         if (string.IsNullOrWhiteSpace(address?.StreetAddress) ||
              string.IsNullOrWhiteSpace(address.ZipCode) &&
              (string.IsNullOrWhiteSpace(address.City) || string.IsNullOrWhiteSpace(address.State)))
-            throw new NullReferenceException();
+            return;
          var response = GoogleMaps.Geocode.Query(new GeocodingRequest {Address = address.FullAddress});
          address.ApplyGeocode(response.Results.First());
          Repo.SaveAddress(address);

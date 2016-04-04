@@ -48,6 +48,15 @@
       var map;
       var pos;
       var FocusMap;
+      $("#UseLoc").on('change', function(e) {
+         if ($(this).is(':checked')) {
+            $("#LocFilter1").removeClass("collapse");
+            $("#LocFilter2").addClass("collapse");
+         } else {
+            $("#LocFilter1").addClass("collapse");
+            $("#LocFilter2").removeClass("collapse");
+         }
+      });
 
       function initMap() {
 
@@ -70,6 +79,10 @@
                infoWindow.setPosition(pos);
                infoWindow.setContent('Your Location.');
                map.setCenter(pos);
+               $("#geoLocOption").removeClass("collapse");
+               $("#UseLoc").checked=true;
+               $("#Lat").val(pos.lat);
+               $("#Lng").val(pos.lng);
             }, function() {
                handleLocationError(true, infoWindow, map.getCenter());
             });
@@ -91,19 +104,10 @@
          });
 
 
-         //$("#locationName").html("@dealer.Address.City Location");
-         //$("#manager").html("Managed by: @dealer.Manager");
-         //$("#address").html("@dealer.Address.FullAddress");
-
-         //$("#directions").html('<a href="http://maps.google.com/maps?saddr=(' + pos.lat + ',' + pos.lng + ')&daddr=(@dealer.Address.Latitude, @dealer.Address.Longitude)" target="_new">Directions <small>(Open Google maps in a new window.)</small></a>');
-
-
          bounds.extend(@("marker" + dealer.Id).getPosition());
          </text>
          }
          FocusMap = function(e) {
-            //e.preventDefault();
-            //e.stopPropagation();
             map.setZoom(17);
             map.panTo({
                lat: parseFloat($("#DealerLat").val()),
@@ -118,14 +122,16 @@
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+         $("#geoLocOption").addClass("collapse");
          infoWindow.setPosition(pos);
          infoWindow.setContent(browserHasGeolocation ?
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
       }
 
-
+   
    </script>
+
 
 }
 

@@ -9,3 +9,20 @@
    height: 20em;
    margin-bottom: 1em;
 }
+
+tr {
+   border-bottom: solid 1px
+}
+td, th {
+   text-align: center;
+}
+td:first-child,th:first-child {
+   border-right: solid #aaaaaa 1px;
+
+}
+table {
+   width: 100%;
+}
+thead {
+   background-color: black;color: white;
+}

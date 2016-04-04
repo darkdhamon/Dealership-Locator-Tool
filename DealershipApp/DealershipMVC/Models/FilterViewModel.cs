@@ -27,5 +27,10 @@ namespace DealershipMVC.Models
       public List<SelectListItem> Years { get; set; } 
       public List<SelectListItem> Makes { get; set; } 
       public List<SelectListItem> Models { get; set; }
+      public string City { get; set; }
+      public string State { get; set; }
+      public bool UseLoc { get; set; }
+      public double Lat { get; set; }
+      public double Lng { get; set; }
    }
 }
