@@ -9,54 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace DealershipMVC.DealershipService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GenericResponse", Namespace="http://schemas.datacontract.org/2004/07/WCFStatusResponse")]
-    [System.SerializableAttribute()]
-    public partial class GenericResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DealershipService.IDealershipService")]
@@ -69,10 +22,28 @@ namespace DealershipMVC.DealershipService {
         System.Threading.Tasks.Task<DealershipModel.Entities.Dealership[]> DealershipsAsync(DealershipModel.Entities.Address address, System.Nullable<int> rangeMiles, string make, string model, string year);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/AddDealership", ReplyAction="http://tempuri.org/IDealershipService/AddDealershipResponse")]
-        DealershipMVC.DealershipService.GenericResponse AddDealership(DealershipModel.Entities.Dealership dealership);
+        WCFStatusResponse.GenericResponse AddDealership(DealershipModel.Entities.Dealership dealership);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/AddDealership", ReplyAction="http://tempuri.org/IDealershipService/AddDealershipResponse")]
-        System.Threading.Tasks.Task<DealershipMVC.DealershipService.GenericResponse> AddDealershipAsync(DealershipModel.Entities.Dealership dealership);
+        System.Threading.Tasks.Task<WCFStatusResponse.GenericResponse> AddDealershipAsync(DealershipModel.Entities.Dealership dealership);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Vehicles", ReplyAction="http://tempuri.org/IDealershipService/VehiclesResponse")]
+        DealershipModel.Entities.Vehicle[] Vehicles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Vehicles", ReplyAction="http://tempuri.org/IDealershipService/VehiclesResponse")]
+        System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> VehiclesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/VehicleFilterData", ReplyAction="http://tempuri.org/IDealershipService/VehicleFilterDataResponse")]
+        System.Collections.Generic.Dictionary<string, string[]> VehicleFilterData();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/VehicleFilterData", ReplyAction="http://tempuri.org/IDealershipService/VehicleFilterDataResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> VehicleFilterDataAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Dealership", ReplyAction="http://tempuri.org/IDealershipService/DealershipResponse")]
+        DealershipModel.Entities.Dealership Dealership(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Dealership", ReplyAction="http://tempuri.org/IDealershipService/DealershipResponse")]
+        System.Threading.Tasks.Task<DealershipModel.Entities.Dealership> DealershipAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -110,12 +81,36 @@ namespace DealershipMVC.DealershipService {
             return base.Channel.DealershipsAsync(address, rangeMiles, make, model, year);
         }
         
-        public DealershipMVC.DealershipService.GenericResponse AddDealership(DealershipModel.Entities.Dealership dealership) {
+        public WCFStatusResponse.GenericResponse AddDealership(DealershipModel.Entities.Dealership dealership) {
             return base.Channel.AddDealership(dealership);
         }
         
-        public System.Threading.Tasks.Task<DealershipMVC.DealershipService.GenericResponse> AddDealershipAsync(DealershipModel.Entities.Dealership dealership) {
+        public System.Threading.Tasks.Task<WCFStatusResponse.GenericResponse> AddDealershipAsync(DealershipModel.Entities.Dealership dealership) {
             return base.Channel.AddDealershipAsync(dealership);
+        }
+        
+        public DealershipModel.Entities.Vehicle[] Vehicles() {
+            return base.Channel.Vehicles();
+        }
+        
+        public System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> VehiclesAsync() {
+            return base.Channel.VehiclesAsync();
+        }
+        
+        public System.Collections.Generic.Dictionary<string, string[]> VehicleFilterData() {
+            return base.Channel.VehicleFilterData();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, string[]>> VehicleFilterDataAsync() {
+            return base.Channel.VehicleFilterDataAsync();
+        }
+        
+        public DealershipModel.Entities.Dealership Dealership(int id) {
+            return base.Channel.Dealership(id);
+        }
+        
+        public System.Threading.Tasks.Task<DealershipModel.Entities.Dealership> DealershipAsync(int id) {
+            return base.Channel.DealershipAsync(id);
         }
     }
 }

@@ -13,13 +13,9 @@ namespace DealershipModel.Concrete
 
       public IQueryable<Dealership> Dealerships => Context.Dealerships.Include(d => d.Address);
 
-      //public IQueryable<Dealership> DealershipsCompleteDetails
-      //   => Context.Dealerships
-      //      .Include(d => new {d.Address, d.Vehicles}); //todo Change if fails
-            //.Include(d => d.Vehicles);
 
       public IQueryable<Address> Addresses => Context.Addresses;
-      public IQueryable<Vehicle> Vehicles => Context.Vehicles.Include(v => v.Dealership);
+      public IQueryable<Vehicle> Vehicles => Context.Vehicles.Include(v => v.Dealership.Address);
 
       public void SaveAddress(Address address)
       {

@@ -11,8 +11,7 @@ using WCFStatusResponse;
 
 namespace DealershipWCF
 {
-   // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "DealershipService" in code, svc and config file together.
-   // NOTE: In order to launch WCF Test Client for testing this service, please select DealershipService.svc or DealershipService.svc.cs at the Solution Explorer and start debugging.
+
    public class DealershipService : IDealershipService
    {
       public DealershipService()
@@ -23,10 +22,7 @@ namespace DealershipWCF
       private IDealershipRepository Repo { get; }
 
 
-      public IEnumerable<Dealership> Dealerships(Address address = null,
-         int? rangeMiles = null, string make = null,
-         string model = null,
-         string year = null)
+      public IEnumerable<Dealership> Dealerships(Address address = null, int? rangeMiles = null, string make = null, string model = null, string year = null)
       {
          foreach (
             var dealership in Repo.Dealerships.Where(d => d.Address.Latitude == null || d.Address.Longitude == null))
@@ -37,27 +33,13 @@ namespace DealershipWCF
          make = string.IsNullOrWhiteSpace(make) ? null : make;
          model = string.IsNullOrWhiteSpace(model) ? null : model;
          year = string.IsNullOrWhiteSpace(year) ? null : year;
-         //if (string.IsNullOrWhiteSpace(make) && string.IsNullOrWhiteSpace(model) && string.IsNullOrWhiteSpace(year))
             IEnumerable<Dealership> dealerships = Repo.Dealerships.Where(d =>
                d.Vehicles.Any(v =>
                   (make==null || v.Make.Equals(make)) &&
                   (model==null || v.Model.Equals(model)) &&
                   (year==null || v.Year.Equals(year)))
                ); 
-         /* CheckRange(address, rangeMiles, d.Address)*/
-        // else
-         //{
-         //   dealerships = Repo.DealershipsCompleteDetails.Where(d =>
-         //      d.Vehicles.Any(v =>
-         //         (string.IsNullOrWhiteSpace(make) || v.Make.Equals(make)) &&
-         //         (string.IsNullOrWhiteSpace(model) || v.Model.Equals(model)) &&
-         //         (string.IsNullOrWhiteSpace(year) || v.Year.Equals(year)))
-         //      );
-         //   foreach (var dealership in dealerships)
-         //   {
-         //      dealership.Vehicles.Clear();
-         //   }
-         //}
+
          dealerships = dealerships
             .ToList()
             .Where(d =>
@@ -92,6 +74,26 @@ namespace DealershipWCF
          }
 
          return response;
+      }
+
+      public IEnumerable<Vehicle> Vehicles()
+      {
+         var cars = Repo.Vehicles.ToList();
+         return cars;
+      }
+
+      public Dictionary<string, string[]> VehicleFilterData()
+      {
+         var filterData = new Dictionary<string, string[]>();
+         filterData["Year"] = Repo.Vehicles.Select(v => v.Year).Distinct().ToArray();
+         filterData["Make"] = Repo.Vehicles.Select(v => v.Make).Distinct().ToArray();
+         filterData["Model"] = Repo.Vehicles.Select(v => v.Model).Distinct().ToArray();
+         return filterData;
+      }
+
+      public Dealership Dealership(int id)
+      {
+         return Repo.Dealerships.FirstOrDefault(d => d.Id == id);
       }
 
       private static bool CheckRange(Address address, int rangeMiles, Address dealerAddress)

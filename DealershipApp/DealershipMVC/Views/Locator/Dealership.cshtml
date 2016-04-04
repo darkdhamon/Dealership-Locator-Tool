@@ -1,0 +1,11 @@
+﻿@model DealershipModel.Entities.Dealership
+
+<h2>@Model.Address.City (Dealer #:@Model.Id.ToString("D5"))</h2>
+<h6>@Model.Address.FullAddress</h6>
+<p>Managed by: @Model.Manager </p>
+<div>
+   <a id="directions" href="http://maps.google.com/maps?saddr=(CurrentAddress)&daddr=(@Model.Address.FullAddress)" onclick="UpdateLocation()" target="_new">content</a>
+</div>
+
+<input type="hidden" id="DealerLat" name="DealerLat" value="@Model.Address.Latitude" />
+<input type="hidden" id="DealerLng" name="DealerLng" value="@Model.Address.Longitude" />

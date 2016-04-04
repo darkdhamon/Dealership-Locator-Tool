@@ -1,15 +1,11 @@
 ﻿@using System.Web.Optimization
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-   <title>_Layout</title>
+   <title>@ViewBag.Title</title>
    @Styles.Render("~/css/Bootstrap")
 </head>
 <body>
@@ -29,7 +25,8 @@
          <!-- Collect the nav links, forms, and other content for toggling -->
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-               <li class="active">@Html.ActionLink("Locations","Locations","Locator")</li>
+               <li id="car">@Html.ActionLink("Cars","Index", "Vehicle")</li>
+               <li id="loc">@Html.ActionLink("Locations", "Locations", "Locator")</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                

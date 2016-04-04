@@ -1,0 +1,21 @@
+﻿@model DealershipMVC.Models.FilterViewModel
+
+
+@using (Ajax.BeginForm("FilterLocations", new AjaxOptions() { HttpMethod = "Post", UpdateTargetId = "dealerList", OnSuccess = ""}))
+{
+
+   <div>
+      <p>Only show dealerships that match the following criteria.</p>
+   </div>
+   <div>
+      Dealerships that are @Html.EditorFor(m => m.Miles) miles from @Html.EditorFor(m => m.ZipCode)
+   </div>
+   <div>
+      Dealerships that have vehicles that are:
+
+      @Html.DropDownListFor(m => m.Year, Model.Years)
+      @Html.DropDownListFor(m => m.Make, Model.Makes)
+      @Html.DropDownListFor(m => m.Model, Model.Models)
+   </div>
+   <button type="submit" class="btn">Update Filter</button>
+}

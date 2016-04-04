@@ -1,4 +1,5 @@
-﻿@model DealershipModel.Entities.Dealership[]
+﻿@using System.Web.Optimization
+@model DealershipModel.Entities.Dealership[]
 
 @{
    ViewBag.Title = "title";
@@ -13,25 +14,43 @@
 
 @section sideNav{
    <ul class="nav nav-pills nav-stacked">
-      @foreach (var dealership in Model)
+      <li role="presentation">
+         <a id="filter" href="#">Filter Locations</a>
+      </li>
+   </ul>
+   <ul id="dealerList" class="nav nav-pills nav-stacked">
+
+      @*@foreach (var dealership in Model)
       {
          <li role="presentation">
             <a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
             @Html.Hidden("dealerDist" + dealership.Id)
          </li>
+      }*@
+      @{
+         Html.RenderPartial("Dealerships");
       }
-
    </ul>
 }
 
 @section js{
+   @Scripts.Render("~/js/Ajax")
+   <script>$("#loc").addClass("active")</script>
+   <script>
+      $("#filter").click(function() {
+         $("#filter").toggleClass("active");
+         $("#filterData").toggleClass("collapse");
+      })
+   </script>
    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 
    <script>
       var map;
+      var pos;
+      var FocusMap;
 
       function initMap() {
-         var pos;
+
          var mapDiv = document.getElementById('map');
          var bounds = new google.maps.LatLngBounds();
          map = new google.maps.Map(mapDiv, {
@@ -71,44 +90,31 @@
             title: 'Hello World!'
          });
 
-         $("#@("dealer" + dealer.Id)").click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            map.setZoom(17);
-            map.panTo(@("marker" + dealer.Id).position);
-            $("#locationName").html("@dealer.Address.City Location");
-            $("#manager").html("Managed by: @dealer.Manager");
-            $("#address").html("@dealer.Address.FullAddress");
 
-            $("#directions").html('<a href="http://maps.google.com/maps?saddr=(' + pos.lat + ',' + pos.lng + ')&daddr=(@dealer.Address.Latitude, @dealer.Address.Longitude)" target="_new">Directions <small>(Open Google maps in a new window.)</small></a>');
-         });
+         //$("#locationName").html("@dealer.Address.City Location");
+         //$("#manager").html("Managed by: @dealer.Manager");
+         //$("#address").html("@dealer.Address.FullAddress");
 
+         //$("#directions").html('<a href="http://maps.google.com/maps?saddr=(' + pos.lat + ',' + pos.lng + ')&daddr=(@dealer.Address.Latitude, @dealer.Address.Longitude)" target="_new">Directions <small>(Open Google maps in a new window.)</small></a>');
 
-         @*var @("dealerPos"+dealer.Id) = {
-            lat: @(dealer.Address.Latitude),
-            lng: @(dealer.Address.Longitude)
-         };
-
-         var service = new google.maps.DistanceMatrixService();
-         service.getDistanceMatrix(
-         {
-            origins: [pos],
-            destinations: [@("dealerPos"+dealer.Id)],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.IMPERIAL,
-         }, @("Callback" + dealer.Id));
-
-         function @("Callback" + dealer.Id)(response, status) {
-            if (status == google.maps.DistanceMatrixStatus.OK) {
-               $("@("#dealerDist" + dealer.Id)").val(response.rows[0].elements[0].text);
-            }
-         }*@
 
          bounds.extend(@("marker" + dealer.Id).getPosition());
          </text>
          }
+         FocusMap = function(e) {
+            //e.preventDefault();
+            //e.stopPropagation();
+            map.setZoom(17);
+            map.panTo({
+               lat: parseFloat($("#DealerLat").val()),
+               lng: parseFloat($("#DealerLng").val())
+            });
+         };
 
+      }
 
+      function UpdateLocation(parameters) {
+         $("#directions").href($("#directions").href().replace("CurrentAddress", pos.lat + "," + pos.lng));
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -117,13 +123,20 @@
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
       }
-      //google.maps.event.addDomListener(window, 'load', initialize);
+
+
    </script>
 
 }
 
+<div id="filterData" class="collapse">
+   @Html.Action("FilterLocations")
 
-<h2 id="locationName"></h2>
-<h6 id="address"></h6>
-<p id="manager"></p>
-<div id="directions"></div>
+</div>
+
+<div id="DealershipDetails">
+   <h2 id="locationName"></h2>
+   <h6 id="address"></h6>
+   <p id="manager"></p>
+   <div id="directions"></div>
+</div>

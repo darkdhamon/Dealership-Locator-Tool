@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace DealershipMVC.App_Start
 {
@@ -23,8 +19,8 @@ namespace DealershipMVC.App_Start
          bundles.Add(new ScriptBundle("~/js/Bootstrap")
             .Include("~/scripts/bootstrap.min.js")
             );
-
-
+         bundles.Add(new ScriptBundle("~/js/Ajax")
+            .Include("~/scripts/jquery.unobtrusive-ajax.min.js"));
       }
    }
 }

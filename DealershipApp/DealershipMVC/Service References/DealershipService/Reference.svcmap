@@ -25,6 +25,7 @@
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="553cc085-a3b1-4a63-b753-b1a2f247b2e2" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?disco" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="ef2a0d51-6c76-4908-9764-7479f896f5fc" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?xsd=xsd0" />
     <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="a9708b6f-3e8f-4210-9f66-2f42e131d772" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="8e2a0d47-3c05-4c83-aaf7-c151ec75c836" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?xsd=xsd4" />
     <MetadataFile FileName="DealershipService.wsdl" MetadataType="Wsdl" ID="e32881d7-3dd1-45cb-b662-6137d9f0f60c" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?wsdl" />
     <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="e7bd58f1-8fd4-43d9-a007-0545ccc4b321" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?xsd=xsd1" />
     <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="54789cc6-71d5-4def-9ad0-a20e5d313a78" SourceId="1" SourceUrl="http://localhost/DealershipWCF/Service1.svc?xsd=xsd3" />

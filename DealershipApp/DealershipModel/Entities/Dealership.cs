@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace DealershipModel.Entities
 {
-   [DataContract]
+   [DataContract(IsReference = true)]
    public class Dealership
    {
       [Key]

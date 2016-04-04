@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 using DealershipModel.Entities;
-using GoogleMapsApi.Entities.Directions.Response;
 using WCFStatusResponse;
 
 namespace DealershipWCF
@@ -23,8 +18,14 @@ namespace DealershipWCF
 
       [OperationContract]
       GenericResponse AddDealership(Dealership dealership);
- 
-      
-      
+
+      [OperationContract]
+      IEnumerable<Vehicle> Vehicles();
+
+      [OperationContract]
+      Dictionary<string, string[]> VehicleFilterData();
+
+      [OperationContract]
+      Dealership Dealership(int id);
    }
 }

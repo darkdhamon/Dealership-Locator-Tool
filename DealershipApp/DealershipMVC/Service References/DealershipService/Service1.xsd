@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" />
   <xs:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFStatusResponse" />
+  <xs:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="Dealerships">
     <xs:complexType>
       <xs:sequence>
@@ -31,6 +32,44 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFStatusResponse" minOccurs="0" name="AddDealershipResult" nillable="true" type="q4:GenericResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Vehicles">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VehiclesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" minOccurs="0" name="VehiclesResult" nillable="true" type="q5:ArrayOfVehicle" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VehicleFilterData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VehicleFilterDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="VehicleFilterDataResult" nillable="true" type="q6:ArrayOfKeyValueOfstringArrayOfstringty7Ep6D1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Dealership">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DealershipResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" minOccurs="0" name="DealershipResult" nillable="true" type="q7:Dealership" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" />
       <xsd:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCFStatusResponse" />
+      <xsd:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDealershipService_Dealerships_InputMessage">
@@ -20,6 +21,24 @@
   <wsdl:message name="IDealershipService_AddDealership_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddDealershipResponse" />
   </wsdl:message>
+  <wsdl:message name="IDealershipService_Vehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:Vehicles" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_Vehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VehiclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_VehicleFilterData_InputMessage">
+    <wsdl:part name="parameters" element="tns:VehicleFilterData" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_VehicleFilterData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VehicleFilterDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_Dealership_InputMessage">
+    <wsdl:part name="parameters" element="tns:Dealership" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_Dealership_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DealershipResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDealershipService">
     <wsdl:operation name="Dealerships">
       <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/Dealerships" message="tns:IDealershipService_Dealerships_InputMessage" />
@@ -28,6 +47,18 @@
     <wsdl:operation name="AddDealership">
       <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/AddDealership" message="tns:IDealershipService_AddDealership_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/AddDealershipResponse" message="tns:IDealershipService_AddDealership_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Vehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/Vehicles" message="tns:IDealershipService_Vehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/VehiclesResponse" message="tns:IDealershipService_Vehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VehicleFilterData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/VehicleFilterData" message="tns:IDealershipService_VehicleFilterData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/VehicleFilterDataResponse" message="tns:IDealershipService_VehicleFilterData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Dealership">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/Dealership" message="tns:IDealershipService_Dealership_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/DealershipResponse" message="tns:IDealershipService_Dealership_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDealershipService" type="tns:IDealershipService">
@@ -43,6 +74,33 @@
     </wsdl:operation>
     <wsdl:operation name="AddDealership">
       <soap:operation soapAction="http://tempuri.org/IDealershipService/AddDealership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vehicles">
+      <soap:operation soapAction="http://tempuri.org/IDealershipService/Vehicles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VehicleFilterData">
+      <soap:operation soapAction="http://tempuri.org/IDealershipService/VehicleFilterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Dealership">
+      <soap:operation soapAction="http://tempuri.org/IDealershipService/Dealership" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

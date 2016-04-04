@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DealershipModel.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/DealershipWCF/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Address">
     <xs:sequence>
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
@@ -27,6 +28,8 @@
       <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Vehicles" nillable="true" type="tns:ArrayOfVehicle" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Dealership" nillable="true" type="tns:Dealership" />
   <xs:complexType name="ArrayOfVehicle">
@@ -43,6 +46,8 @@
       <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Vehicle" nillable="true" type="tns:Vehicle" />
 </xs:schema>

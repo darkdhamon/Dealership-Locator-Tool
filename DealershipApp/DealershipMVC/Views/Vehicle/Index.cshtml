@@ -1,0 +1,35 @@
+﻿@model System.Collections.Generic.IEnumerable<DealershipModel.Entities.Vehicle>
+
+@{
+   ViewBag.Title = "title";
+}
+<table>
+   <tr>
+      <th>Stock Number</th><th>Vehicle</th><th>Dealership</th><th>Directions</th>
+   </tr>
+   @foreach (var vehicle in Model)
+   {
+      <tr>
+         <td>@vehicle.Id.ToString("D5")</td>
+         <td>@vehicle.Year @vehicle.Make @vehicle.Model</td>
+         <td>Dealer #@vehicle.Dealership.Id.ToString("D5") (@vehicle.Dealership.Address.City, @vehicle.Dealership.Address.State)</td>
+         <td><a href="https://www.google.com/maps?daddr=@vehicle.Dealership.Address.FullAddress" target="_new">@vehicle.Dealership.Address.FullAddress</a></td>
+      </tr>
+   }
+
+</table>
+
+@section sideNav{
+   <h2>Featured Partners</h2>
+   <a href="http://ford.com" target="_blank">
+   <img src="https://manuals4u.com.au/wp-content/uploads/2011/11/ford-banner.jpg" alt="Advert" style="width: 100%" />
+   <img src="http://int.www.northpoint.com.au/images/ford-banner.png" alt="Advert" style="width: 100%" />
+   <img src="http://holmanford.com/img/Ford_Banner_060313.jpg" alt="Advert" style="width: 100%" />
+</a>
+}
+
+@section js{
+   <script>
+      $("car").addClass("active");
+   </script>
+}

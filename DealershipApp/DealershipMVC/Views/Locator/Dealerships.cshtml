@@ -1,0 +1,24 @@
+﻿@model DealershipModel.Entities.Dealership[]
+
+@*@using (Ajax.BeginForm())
+{*@
+@foreach (var dealership in Model)
+ {
+    <li role="presentation">
+       @Ajax.ActionLink($"{dealership.Address.City}, {dealership.Address.State} (Store #:{dealership.Id.ToString("D5")})",
+          "Dealership",
+          new RouteValueDictionary
+          {
+             {"id", dealership.Id}
+          }, new AjaxOptions()
+          {
+             HttpMethod = "Post",
+             UpdateTargetId = "DealershipDetails",
+             OnSuccess = "FocusMap"
+          })
+       @*<a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
+      @Html.Hidden("dealerDist" + dealership.Id)*@
+    </li>
+
+ }
+@*  }*@
