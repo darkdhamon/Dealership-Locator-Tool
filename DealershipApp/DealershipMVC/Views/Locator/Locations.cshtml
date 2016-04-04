@@ -1,0 +1,129 @@
+﻿@model DealershipModel.Entities.Dealership[]
+
+@{
+   ViewBag.Title = "title";
+}
+
+@section map{
+   <div id="dealer">
+      <div id="map"></div>
+
+   </div>
+}
+
+@section sideNav{
+   <ul class="nav nav-pills nav-stacked">
+      @foreach (var dealership in Model)
+      {
+         <li role="presentation">
+            <a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
+            @Html.Hidden("dealerDist" + dealership.Id)
+         </li>
+      }
+
+   </ul>
+}
+
+@section js{
+   <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+
+   <script>
+      var map;
+
+      function initMap() {
+         var pos;
+         var mapDiv = document.getElementById('map');
+         var bounds = new google.maps.LatLngBounds();
+         map = new google.maps.Map(mapDiv, {
+            center: { lat: @(Model.Sum(d => d.Address.Latitude)/Model.Length), lng: @(Model.Sum(d => d.Address.Longitude)/Model.Length) },
+            zoom: 8
+         });
+
+         map.fitBounds(bounds);
+         var infoWindow = new google.maps.InfoWindow({ map: map });
+         if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+               pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+               };
+
+               infoWindow.setPosition(pos);
+               infoWindow.setContent('Your Location.');
+               map.setCenter(pos);
+            }, function() {
+               handleLocationError(true, infoWindow, map.getCenter());
+            });
+         } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+         }
+
+         @foreach (var dealer in Model)
+         {
+            <text>
+         var @("marker" + dealer.Id) = new google.maps.Marker({
+            position: {
+               lat: @(dealer.Address.Latitude),
+               lng: @(dealer.Address.Longitude)
+            },
+            map: map,
+            title: 'Hello World!'
+         });
+
+         $("#@("dealer" + dealer.Id)").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            map.setZoom(17);
+            map.panTo(@("marker" + dealer.Id).position);
+            $("#locationName").html("@dealer.Address.City Location");
+            $("#manager").html("Managed by: @dealer.Manager");
+            $("#address").html("@dealer.Address.FullAddress");
+
+            $("#directions").html('<a href="http://maps.google.com/maps?saddr=(' + pos.lat + ',' + pos.lng + ')&daddr=(@dealer.Address.Latitude, @dealer.Address.Longitude)" target="_new">Directions <small>(Open Google maps in a new window.)</small></a>');
+         });
+
+
+         @*var @("dealerPos"+dealer.Id) = {
+            lat: @(dealer.Address.Latitude),
+            lng: @(dealer.Address.Longitude)
+         };
+
+         var service = new google.maps.DistanceMatrixService();
+         service.getDistanceMatrix(
+         {
+            origins: [pos],
+            destinations: [@("dealerPos"+dealer.Id)],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
+         }, @("Callback" + dealer.Id));
+
+         function @("Callback" + dealer.Id)(response, status) {
+            if (status == google.maps.DistanceMatrixStatus.OK) {
+               $("@("#dealerDist" + dealer.Id)").val(response.rows[0].elements[0].text);
+            }
+         }*@
+
+         bounds.extend(@("marker" + dealer.Id).getPosition());
+         </text>
+         }
+
+
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+         infoWindow.setPosition(pos);
+         infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+      }
+      //google.maps.event.addDomListener(window, 'load', initialize);
+   </script>
+
+}
+
+
+<h2 id="locationName"></h2>
+<h6 id="address"></h6>
+<p id="manager"></p>
+<div id="directions"></div>
