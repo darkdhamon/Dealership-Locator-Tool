@@ -21,7 +21,7 @@ namespace DealershipMVC.Controllers
       public ActionResult FilterLocations()
       {
          var data = Client.VehicleFilterData();
-
+         
          var model = new FilterViewModel
          {
             Years = data["Year"].Select(x => new SelectListItem
@@ -29,7 +29,7 @@ namespace DealershipMVC.Controllers
                Value = x,
                Text = x,
                Selected = false
-            }).ToList(),
+            }).ToList() ,
             Makes = data["Make"].Select(x => new SelectListItem
             {
                Value = x,
@@ -70,13 +70,13 @@ namespace DealershipMVC.Controllers
                ZipCode = zipCode
             };
          }
-         if (!city.IsNullOrWhiteSpace() && !state.IsNullOrWhiteSpace())
+         if(!city.IsNullOrWhiteSpace()&&!state.IsNullOrWhiteSpace())
             address = new Address()
             {
                City = city,
                State = state,
             };
-         if (!(lat == 0 || lng == 0) && useLoc)
+         if(!(lat == 0 || lng == 0) && useLoc)
             address = new Address()
             {
                Latitude = lat,
@@ -90,8 +90,8 @@ namespace DealershipMVC.Controllers
             Client.Dealerships(
                address,
                miles == 0 ? (int?)null : miles,
-               make.Equals("Any Make") ? null : make,
-               model.Equals("Any Model") ? null : model,
+               make.Equals("Any Make")?null:make,
+               model.Equals("Any Model")?null:model,
                year
                ));
       }

@@ -22,12 +22,12 @@
    <ul id="dealerList" class="nav nav-pills nav-stacked">
 
       @*@foreach (var dealership in Model)
-         {
-            <li role="presentation">
-               <a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
-               @Html.Hidden("dealerDist" + dealership.Id)
-            </li>
-         }*@
+      {
+         <li role="presentation">
+            <a id="@("dealer" + dealership.Id)" href="#">@dealership.Address.City, @dealership.Address.State (Store #:@dealership.Id.ToString("D5"))</a>
+            @Html.Hidden("dealerDist" + dealership.Id)
+         </li>
+      }*@
       @{
          Html.RenderPartial("Dealerships");
       }
@@ -129,7 +129,7 @@
             'Error: Your browser doesn\'t support geolocation.');
       }
 
-
+   
    </script>
 
 

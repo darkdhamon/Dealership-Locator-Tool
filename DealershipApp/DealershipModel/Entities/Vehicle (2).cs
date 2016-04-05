@@ -27,8 +27,9 @@ namespace DealershipModel.Entities
       public Dealership Dealership { get; set; }
 
       [DataMember]
+      [DataType(DataType.ImageUrl)]
       [Required]
       [DefaultValue("http://contentservice.mc.reyrey.net/image_v1.0.0/13363657")]
-      public string ImgURL { get; set; }
+      public string ImgUrl { get; set; }
    }
 }

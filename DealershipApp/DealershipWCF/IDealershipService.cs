@@ -21,6 +21,10 @@ namespace DealershipWCF
 
       [OperationContract]
       IEnumerable<Vehicle> Vehicles();
+      [OperationContract]
+      Vehicle Vehicle(int id);
+      [OperationContract]
+      IEnumerable<Vehicle> DealerVehicles(int id);
 
       [OperationContract]
       Dictionary<string, string[]> VehicleFilterData();

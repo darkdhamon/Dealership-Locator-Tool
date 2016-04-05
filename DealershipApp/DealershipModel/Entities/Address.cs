@@ -14,26 +14,15 @@ namespace DealershipModel.Entities
       public int Id { get; set; }
 
       [Required]
-      [Index("FullAddress", 1, IsUnique = true)]
-      [StringLength(250)]
       [DataMember]
       public string StreetAddress { get; set; }
-
-
-      [Index("FullAddress", 2, IsUnique = true)]
-      [StringLength(50)]
+      
       [DataMember]
       public string City { get; set; }
-
-
-      [Index("FullAddress", 3, IsUnique = true)]
-      [StringLength(2)]
+      
       [DataMember]
       public string State { get; set; }
-
-
-      [Index("FullAddress", 4, IsUnique = true)]
-      [StringLength(10)]
+      
       [DataMember]
       public string ZipCode { get; set; }
 

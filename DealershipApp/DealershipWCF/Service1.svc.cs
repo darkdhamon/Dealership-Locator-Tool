@@ -82,6 +82,16 @@ namespace DealershipWCF
          return cars;
       }
 
+      public Vehicle Vehicle(int id)
+      {
+         return Repo.Vehicles.FirstOrDefault(v => v.Id == id);
+      }
+
+      public IEnumerable<Vehicle> DealerVehicles(int id)
+      {
+         return Vehicles()
+      }
+
       public Dictionary<string, string[]> VehicleFilterData()
       {
          var filterData = new Dictionary<string, string[]>();

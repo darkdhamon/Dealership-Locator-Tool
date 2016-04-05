@@ -1,9 +1,9 @@
 ﻿@model DealershipModel.Entities.Dealership[]
 
 @foreach (var dealership in Model)
-{
-   <li role="presentation">
-      @Ajax.ActionLink($"{dealership.Address.City}, {dealership.Address.State} (Store #:{dealership.Id.ToString("D5")})",
+ {
+    <li role="presentation">
+       @Ajax.ActionLink($"{dealership.Address.City}, {dealership.Address.State} (Store #:{dealership.Id.ToString("D5")})",
           "Dealership",
           new RouteValueDictionary
           {
@@ -14,9 +14,9 @@
              UpdateTargetId = "DealershipDetails",
              OnSuccess = "FocusMap"
           })
-   </li>
+    </li>
 
-}
+ }
 
 @if (Model.Length == 0)
 {

@@ -43,6 +43,7 @@ namespace DealershipModel.Migrations
                         Make = c.String(),
                         Model = c.String(),
                         Year = c.String(),
+                        ImgURL = c.String(nullable: false),
                         Dealership_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

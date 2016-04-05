@@ -20,11 +20,11 @@ namespace DealershipMVC.Controllers
       {
          var client = new DealershipServiceClient();
          var response = client.AddDealership(dealership);
-         if (typeof(ErrorResponse) != response.GetType()) return RedirectToAction("Locations", "Locator");
+         if (typeof (ErrorResponse) != response.GetType()) return RedirectToAction("Locations", "Locator");
          ViewBag.ErrorMessage(response.Message);
 
          return View(dealership);
       }
-
+   
    }
 }

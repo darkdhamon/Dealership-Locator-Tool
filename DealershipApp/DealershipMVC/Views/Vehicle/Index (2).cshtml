@@ -13,19 +13,19 @@
 
       </tr>
 
-      <tr>
-         <th></th>
-         <th>Year</th>
-         <th>Make</th>
-         <th class="model">Model</th>
-         <th></th>
-         <th></th>
-      </tr>
+   <tr>
+      <th></th>
+      <th>Year</th>
+      <th>Make</th>
+      <th class="model">Model</th>
+      <th></th>
+      <th></th>
+   </tr>
    </thead>
    @foreach (var vehicle in Model)
    {
       <tr>
-         <td>@Html.ActionLink(@vehicle.Id.ToString("D5"), "Vehicle", new { id = vehicle.Id })</td>
+         <td>@Html.ActionLink(@vehicle.Id.ToString("D5"),"Vehicle", new {id= vehicle.Id} )</td>
          <td>@vehicle.Year</td>
          <td>@vehicle.Make</td>
          <td class="model">@vehicle.Model</td>
@@ -46,10 +46,10 @@
 @section sideNav{
    <h2>Featured Partners</h2>
    <a href="http://ford.com" target="_blank">
-      <img src="https://manuals4u.com.au/wp-content/uploads/2011/11/ford-banner.jpg" alt="Advert" style="width: 100%" />
-      <img src="http://int.www.northpoint.com.au/images/ford-banner.png" alt="Advert" style="width: 100%" />
-      <img src="http://holmanford.com/img/Ford_Banner_060313.jpg" alt="Advert" style="width: 100%" />
-   </a>
+   <img src="https://manuals4u.com.au/wp-content/uploads/2011/11/ford-banner.jpg" alt="Advert" style="width: 100%" />
+   <img src="http://int.www.northpoint.com.au/images/ford-banner.png" alt="Advert" style="width: 100%" />
+   <img src="http://holmanford.com/img/Ford_Banner_060313.jpg" alt="Advert" style="width: 100%" />
+</a>
 }
 
 @section js{

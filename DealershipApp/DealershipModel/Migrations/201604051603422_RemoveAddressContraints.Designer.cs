@@ -7,13 +7,13 @@ namespace DealershipModel.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class RemoveAddressContraints : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveAddressContraints));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603312226066_Initial"; }
+            get { return "201604051603422_RemoveAddressContraints"; }
         }
         
         string IMigrationMetadata.Source

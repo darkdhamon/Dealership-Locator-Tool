@@ -1,0 +1,8 @@
+﻿@model DealershipModel.Entities.Vehicle[]
+
+<ul>
+   @foreach (var v in Model)
+   {
+      <li>@Html.ActionLink($"{v.Year} {v.Make} {v.Model}","Vehicle",new { id = v.Id})</li>
+   }
+</ul>
