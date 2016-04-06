@@ -188,6 +188,7 @@
     </None>
     <Content Include="scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="scripts\MyGoogle.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +238,8 @@
     <Content Include="Views\Locator\FilterLocations.cshtml" />
     <Content Include="Views\Locator\Dealerships.cshtml" />
     <Content Include="Views\Locator\Dealership.cshtml" />
+    <Content Include="Views\Vehicle\DealerVehicles.cshtml" />
+    <Content Include="Views\Vehicle\Vehicle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -255,7 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DealershipModel\DealershipModel.csproj">
-      <Project>{9283D4C3-19D9-4CD6-828D-7D718FF2B783}</Project>
+      <Project>{6D0BCED0-3A97-4A82-B1B1-212EA3686DA9}</Project>
       <Name>DealershipModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\WCFStatusResponse\WCFStatusResponse.csproj">

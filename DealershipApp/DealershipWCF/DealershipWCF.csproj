@@ -152,7 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DealershipModel\DealershipModel.csproj">
-      <Project>{9283D4C3-19D9-4CD6-828D-7D718FF2B783}</Project>
+      <Project>{6D0BCED0-3A97-4A82-B1B1-212EA3686DA9}</Project>
       <Name>DealershipModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\WCFStatusResponse\WCFStatusResponse.csproj">

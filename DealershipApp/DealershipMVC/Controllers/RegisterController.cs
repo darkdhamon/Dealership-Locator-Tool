@@ -1,4 +1,4 @@
-﻿using System.CodeDom;
+﻿using System;
 using System.Web.Mvc;
 using DealershipModel.Entities;
 using DealershipMVC.DealershipService;
@@ -18,11 +18,18 @@ namespace DealershipMVC.Controllers
       [HttpPost]
       public ActionResult Register(Dealership dealership)
       {
-         var client = new DealershipServiceClient();
-         var response = client.AddDealership(dealership);
-         if (typeof(ErrorResponse) != response.GetType()) return RedirectToAction("Locations", "Locator");
-         ViewBag.ErrorMessage(response.Message);
-
+         try
+         {
+            var client = new DealershipServiceClient();
+            var response = client.AddDealership(dealership);
+            if (typeof(ErrorResponse) != response.GetType()) return RedirectToAction("Locations", "Locator");
+            ViewBag.ErrorMessage(response.Message);
+         }
+         catch (Exception e)
+         {
+            ViewBag.ErrorMessage(e.Message);
+            throw;
+         }
          return View(dealership);
       }
 

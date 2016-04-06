@@ -3,7 +3,7 @@ using DealershipModel.Entities;
 
 namespace DealershipModel.Concrete
 {
-   public class DealershipContext :DbContext
+   public class DealershipContext : DbContext
    {
       public DbSet<Dealership> Dealerships { get; set; }
       public DbSet<Address> Addresses { get; set; }

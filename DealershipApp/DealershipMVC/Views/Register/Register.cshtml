@@ -1,48 +1,52 @@
-﻿@using System.Collections.Generic
-@model DealershipModel.Entities.Dealership
+﻿@model DealershipModel.Entities.Dealership
 
 @{
    ViewBag.Title = "title";
 }
-@Html.BeginForm("Register", "Register", "Post"){
+@using (Html.BeginForm())
+{
 
-<div class="col-sm-2 register">
+   <div class="col-sm-2 register">
 
-   @Html.TextBoxFor(m => m.Manager, new Dictionary<string, object>
-   {
-      {"placeholder", "Manager Name"}
-   })
-   @Html.TextBoxFor(m => m.Phone, new Dictionary<string, object>
-   {
-      {"placeholder", "Phone Number"}
-   })
-   @Html.TextBoxFor(m => m.Address.StreetAddress, new Dictionary<string, object>
-   {
-      {"placeholder", "Street Address"}
-   })
-   @Html.TextBoxFor(m => m.Address.City, new Dictionary<string, object>
-   {
-      {"placeholder", "City"}
-   })
-   @Html.TextBoxFor(m => m.Address.State, new Dictionary<string, object>
-   {
-      {"placeholder", "State"}
-   })
-   @Html.TextBoxFor(m => m.Address.ZipCode, new Dictionary<string, object>
-   {
-      {"placeholder", "Postal Code"}
-   })
-   <button type="submit" class="btn btn-info">Register Dealer</button>
-</div>
-<div class="col-sm-10">
-   <div id="dealer">
-      <div id="map"></div>
-      <div id="MapError"></div>
+
+
+      @Html.TextBoxFor(m => m.Manager, new Dictionary<string, object>
+      {
+         {"placeholder", "Manager Name"}
+      })
+      @Html.TextBoxFor(m => m.Phone, new Dictionary<string, object>
+      {
+         {"placeholder", "Phone Number"}
+      })
+      @Html.TextBoxFor(m => m.Address.StreetAddress, new Dictionary<string, object>
+      {
+         {"placeholder", "Street Address"}
+      })
+      @Html.TextBoxFor(m => m.Address.City, new Dictionary<string, object>
+      {
+         {"placeholder", "City"}
+      })
+      @Html.TextBoxFor(m => m.Address.State, new Dictionary<string, object>
+      {
+         {"placeholder", "State"}
+      })
+      @Html.TextBoxFor(m => m.Address.ZipCode, new Dictionary<string, object>
+      {
+         {"placeholder", "Postal Code"}
+      })
+      
+      <button type="submit" class="btn btn-info">Register Dealer</button>
    </div>
-</div>
+   <div class="col-sm-10">
+      <div id="dealer">
+         <div id="map"></div>
+         <div id="MapError"></div>
+      </div>
+   </div>
 
-<div id="MapError"></div>
 
+   <div id="MapError"></div>
+}
 @section SideNav{
    <h2>Instructions</h2>
    <ul>
@@ -66,7 +70,10 @@
    <script>
       $("#reg").addClass("active");
    </script>
-   <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+   @*?callback=initMap*@
+   <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+   @*<script src="~/scripts/MyGoogle.js"></script>*@
 
    <script>
       var map;
@@ -148,5 +155,8 @@
 
 
    </script>
+<script>
+      initMap();
+</script>
 
 }

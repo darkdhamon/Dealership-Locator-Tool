@@ -1,9 +1,7 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using DealershipModel.Abstract;
 using DealershipModel.Entities;
-using System.Data.Entity.Infrastructure;
 
 namespace DealershipModel.Concrete
 {
@@ -19,6 +17,10 @@ namespace DealershipModel.Concrete
 
       public void SaveAddress(Address address)
       {
+         var firstOrDefault =
+            Context.Addresses.FirstOrDefault(a => a.Latitude == address.Latitude && a.Longitude == address.Longitude);
+         if (firstOrDefault != null)
+            address.Id = firstOrDefault.Id;
          using (var context = new DealershipContext())
          {
             if (address.Id == 0)
@@ -41,7 +43,6 @@ namespace DealershipModel.Concrete
                }
                //var entry = Context.Entry(address);
                //entry.State = EntityState.Modified;
-
             }
             //var entry = Context.Entry(address);
             //entry.State = EntityState.Modified;
@@ -51,7 +52,6 @@ namespace DealershipModel.Concrete
 
             //if(result==0)throw new Exception();
          }
-
       }
 
       /// <summary>
@@ -61,27 +61,30 @@ namespace DealershipModel.Concrete
       /// <param name="dealership"></param>
       public void SaveDealership(Dealership dealership)
       {
-         if (dealership.Address.Id == 0)
-            dealership.Address = Addresses.FirstOrDefault(a => a.FullAddress.Equals(dealership.Address.FullAddress)) ??
-                                 dealership.Address;
-         if (dealership.Id == 0)
+         using (var context = new DealershipContext())
          {
-            //todo: If Address does not save come back here
-            Context.Dealerships.Add(dealership);
+            if (dealership.Address.Id == 0)
+               dealership.Address =
+                  Addresses.FirstOrDefault(a => a.FullAddress.Equals(dealership.Address.FullAddress)) ??
+                  dealership.Address;
+            if (dealership.Id == 0)
+            {
+               //todo: If Address does not save come back here
+               context.Dealerships.Add(dealership);
+            }
+            else
+            {
+               //var dbEntry = Context.Dealerships.Find(dealership.Id);
+               //if (dbEntry != null)
+               //{
+               //   dbEntry.Address = dealership.Address;
+               //   dbEntry.Manager = dealership.Manager;
+               //   dbEntry.Phone = dealership.Phone;
+               //}
+               context.Entry(dealership).State = EntityState.Modified;
+            }
+            context.SaveChanges();
          }
-         else
-         {
-            //var dbEntry = Context.Dealerships.Find(dealership.Id);
-            //if (dbEntry != null)
-            //{
-            //   dbEntry.Address = dealership.Address;
-            //   dbEntry.Manager = dealership.Manager;
-            //   dbEntry.Phone = dealership.Phone;
-            //}
-            Context.Entry(dealership).State = EntityState.Modified;
-            
-         }
-         Context.SaveChanges();
       }
    }
 }

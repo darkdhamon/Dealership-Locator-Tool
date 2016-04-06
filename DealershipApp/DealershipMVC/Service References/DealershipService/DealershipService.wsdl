@@ -27,6 +27,18 @@
   <wsdl:message name="IDealershipService_Vehicles_OutputMessage">
     <wsdl:part name="parameters" element="tns:VehiclesResponse" />
   </wsdl:message>
+  <wsdl:message name="IDealershipService_Vehicle_InputMessage">
+    <wsdl:part name="parameters" element="tns:Vehicle" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_Vehicle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VehicleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_DealerVehicles_InputMessage">
+    <wsdl:part name="parameters" element="tns:DealerVehicles" />
+  </wsdl:message>
+  <wsdl:message name="IDealershipService_DealerVehicles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DealerVehiclesResponse" />
+  </wsdl:message>
   <wsdl:message name="IDealershipService_VehicleFilterData_InputMessage">
     <wsdl:part name="parameters" element="tns:VehicleFilterData" />
   </wsdl:message>
@@ -51,6 +63,14 @@
     <wsdl:operation name="Vehicles">
       <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/Vehicles" message="tns:IDealershipService_Vehicles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/VehiclesResponse" message="tns:IDealershipService_Vehicles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Vehicle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/Vehicle" message="tns:IDealershipService_Vehicle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/VehicleResponse" message="tns:IDealershipService_Vehicle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DealerVehicles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/DealerVehicles" message="tns:IDealershipService_DealerVehicles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDealershipService/DealerVehiclesResponse" message="tns:IDealershipService_DealerVehicles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="VehicleFilterData">
       <wsdl:input wsaw:Action="http://tempuri.org/IDealershipService/VehicleFilterData" message="tns:IDealershipService_VehicleFilterData_InputMessage" />
@@ -83,6 +103,24 @@
     </wsdl:operation>
     <wsdl:operation name="Vehicles">
       <soap:operation soapAction="http://tempuri.org/IDealershipService/Vehicles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vehicle">
+      <soap:operation soapAction="http://tempuri.org/IDealershipService/Vehicle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DealerVehicles">
+      <soap:operation soapAction="http://tempuri.org/IDealershipService/DealerVehicles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

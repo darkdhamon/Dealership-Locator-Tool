@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9283D4C3-19D9-4CD6-828D-7D718FF2B783}</ProjectGuid>
+    <ProjectGuid>{6D0BCED0-3A97-4A82-B1B1-212EA3686DA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DealershipModel</RootNamespace>
@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="GoogleMapsApi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GoogleMapsApi.0.50\lib\net45\GoogleMapsApi.dll</HintPath>
+      <HintPath>..\packages\GoogleMapsApi.0.52\lib\net45\GoogleMapsApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,26 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IDealershipRepository.cs" />
-    <Compile Include="Concrete\DealershipContext.cs" />
     <Compile Include="Concrete\DealershipRepository.cs" />
+    <Compile Include="Concrete\DealershipContext.cs" />
     <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Dealership.cs" />
     <Compile Include="Entities\Vehicle.cs" />
-    <Compile Include="Migrations\201603312226066_Initial.cs" />
-    <Compile Include="Migrations\201603312226066_Initial.Designer.cs">
-      <DependentUpon>201603312226066_Initial.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Entities\Dealership.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603312226066_Initial.resx">
-      <DependentUpon>201603312226066_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

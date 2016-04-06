@@ -56,7 +56,7 @@ namespace DealershipWCF
          {
             GeocodeAddress(dealership.Address);
             if (Repo.Dealerships.Any(
-               d => d.Address.FullAddress.Equals(dealership.Address.FullAddress)))
+               d => d.Address.Id.Equals(dealership.Address.Id)))
                throw new Exception("A dealership already exist at this location.");
             Repo.SaveDealership(dealership);
             response = new GenericResponse
@@ -89,7 +89,7 @@ namespace DealershipWCF
 
       public IEnumerable<Vehicle> DealerVehicles(int id)
       {
-         return Vehicles()
+         return Repo.Vehicles.Where(v => v.Dealership.Id == id);
       }
 
       public Dictionary<string, string[]> VehicleFilterData()

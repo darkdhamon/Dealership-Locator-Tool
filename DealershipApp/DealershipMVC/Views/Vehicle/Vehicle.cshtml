@@ -5,13 +5,16 @@
    ViewBag.Title = "title";
 }
 
+<img class="col-sm-6" src="@Model.ImgURL" alt="@Model.Year @Model.Make @Model.Model"/>
+<div class="col-sm-6">
 
-<h2>@Model.Year @Model.Make @Model.Model</h2>
+   <h2>@Model.Year @Model.Make @Model.Model</h2>
 
-<p>This vehicle for sell at Dealership #@Model.Dealership.Id.ToString("D5")</p>
+   <p>This vehicle for sell at Dealership #@Model.Dealership.Id.ToString("D5")</p>
 
-<small>Call @Model.Dealership.Phone for more details about this vehicle</small>
+   <small>Call @Model.Dealership.Phone for more details about this vehicle</small>
 
+</div>
 
 
 @section map

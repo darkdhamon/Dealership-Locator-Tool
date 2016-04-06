@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using DealershipModel.Entities;
 using WCFStatusResponse;
+
 
 namespace DealershipWCF
 {

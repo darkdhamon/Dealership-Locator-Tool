@@ -33,6 +33,18 @@ namespace DealershipMVC.DealershipService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Vehicles", ReplyAction="http://tempuri.org/IDealershipService/VehiclesResponse")]
         System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> VehiclesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Vehicle", ReplyAction="http://tempuri.org/IDealershipService/VehicleResponse")]
+        DealershipModel.Entities.Vehicle Vehicle(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/Vehicle", ReplyAction="http://tempuri.org/IDealershipService/VehicleResponse")]
+        System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle> VehicleAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/DealerVehicles", ReplyAction="http://tempuri.org/IDealershipService/DealerVehiclesResponse")]
+        DealershipModel.Entities.Vehicle[] DealerVehicles(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/DealerVehicles", ReplyAction="http://tempuri.org/IDealershipService/DealerVehiclesResponse")]
+        System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> DealerVehiclesAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDealershipService/VehicleFilterData", ReplyAction="http://tempuri.org/IDealershipService/VehicleFilterDataResponse")]
         System.Collections.Generic.Dictionary<string, string[]> VehicleFilterData();
         
@@ -95,6 +107,22 @@ namespace DealershipMVC.DealershipService {
         
         public System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> VehiclesAsync() {
             return base.Channel.VehiclesAsync();
+        }
+        
+        public DealershipModel.Entities.Vehicle Vehicle(int id) {
+            return base.Channel.Vehicle(id);
+        }
+        
+        public System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle> VehicleAsync(int id) {
+            return base.Channel.VehicleAsync(id);
+        }
+        
+        public DealershipModel.Entities.Vehicle[] DealerVehicles(int id) {
+            return base.Channel.DealerVehicles(id);
+        }
+        
+        public System.Threading.Tasks.Task<DealershipModel.Entities.Vehicle[]> DealerVehiclesAsync(int id) {
+            return base.Channel.DealerVehiclesAsync(id);
         }
         
         public System.Collections.Generic.Dictionary<string, string[]> VehicleFilterData() {

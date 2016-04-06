@@ -2,7 +2,7 @@
 var geoLoc;
 
 function initMap() {
-   var mapDiv = $("#map");
+   var mapDiv = document.getElementById('map');//$("#map");
    var bounds = new google.maps.LatLngBounds();
    var infoWindow;
    var map = new google.maps.Map(mapDiv, {
@@ -24,6 +24,8 @@ function initMap() {
                infoWindow = new google.maps.InfoWindow({ map: map });
                infoWindow.setPosition(geoLoc);
                infoWindow.setContent('You are here.');
+               map.panTo(geoLoc);
+               map.setZoom(17);
                return true;
             }, function() {
                handleLocationError(true, infoWindow, map.getCenter());
@@ -48,6 +50,7 @@ function initMap() {
             map: map,
             title: title
          });
+         return marker;
       },
       geoCode: function(street, city, state, zipcode) {
          var geocoder = new google.maps.Geocoder();

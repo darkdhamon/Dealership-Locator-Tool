@@ -42,6 +42,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Dealership" nillable="true" type="tns:Dealership" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImgURL" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Make" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
