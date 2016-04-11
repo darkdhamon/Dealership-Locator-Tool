@@ -9,11 +9,11 @@ namespace DealershipMVC.Infrastructure
 {
    public class NinjectControllerFactory : DefaultControllerFactory
    {
-      private readonly IKernel ninjectKernal;
+      private readonly IKernel _ninjectKernal;
 
       public NinjectControllerFactory()
       {
-         ninjectKernal = new StandardKernel();
+         _ninjectKernal = new StandardKernel();
          AddBindings();
       }
 
@@ -24,7 +24,7 @@ namespace DealershipMVC.Infrastructure
 
       protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
       {
-         return controllerType == null ? null : (IController) ninjectKernal.Get(controllerType);
+         return controllerType == null ? null : (IController) _ninjectKernal.Get(controllerType);
       }
    }
 }
